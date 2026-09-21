@@ -1,0 +1,38 @@
+{
+  "中国电信": {
+    "summary": "中国电信政企数字化方案、转型规划与内部评审，用于说明方案并对齐决策和下一步；采用克制的红灰品牌视觉。",
+    "canvas_format": "ppt169",
+    "page_count": 5,
+    "primary_color": "#C00000"
+  },
+  "中汽研": {
+    "summary": "中汽研认证展示、评测汇报与技术交流，用于建立可信理解并推进评审或合作；采用专业的深蓝工程视觉。",
+    "canvas_format": "ppt169",
+    "page_count": 5,
+    "primary_color": "#004098"
+  },
+  "卫宁健康-AI汇报": {
+    "summary": "An AI-themed template for technology and data-related content, suitable for healthcare AI presentations",
+    "canvas_format": "ppt169",
+    "page_count": 5,
+    "primary_color": "#1565C0"
+  },
+  "卫宁健康-暖调大地色": {
+    "summary": "A warm earth tone-themed template with natural and comfortable visual style for healthcare presentations",
+    "canvas_format": "ppt169",
+    "page_count": 5,
+    "primary_color": "#BD1B01"
+  },
+  "卫宁健康-橘色": {
+    "summary": "An orange-themed template with vibrant and energetic visual style for healthcare presentations",
+    "canvas_format": "ppt169",
+    "page_count": 5,
+    "primary_color": "#CE704B"
+  },
+  "卫宁健康-深蓝色": {
+    "summary": "A dark blue-themed template with professional and stable visual style for healthcare presentations",
+    "canvas_format": "ppt169",
+    "page_count": 5,
+    "primary_color": "#006BB7"
+  }
+}

@@ -1,0 +1,36 @@
+<svg height="720" width="1280" data-pptx-master="win_2" data-pptx-master-name="卫宁健康-橘色" data-pptx-layout="win_2_4" data-pptx-layout-name="03_content" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1280 720">
+  <defs>
+    <linearGradient id="headerGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#CE704B"/>
+      <stop offset="100%" stop-color="#CE704B"/>
+    </linearGradient>
+  </defs>
+  
+  <rect id="win_atom_1" width="1280" height="720" fill="#FDF8F3"/>
+  
+  <rect id="win_atom_2" x="0" y="0" width="1280" height="80" fill="url(#headerGradient)"/>
+  
+  <rect id="win_atom_3" x="0" y="80" width="1280" height="15" fill="#FAF6F1"/>
+  
+  <text id="win_atom_4" x="60" y="52" fill="#FFFFFF" font-family="Microsoft YaHei, PingFang SC, Arial, sans-serif" font-size="32" font-weight="bold">{{PAGE_TITLE}}</text>
+  
+  <image id="win_atom_5" x="1090" y="15" width="180" height="52" xlink:href="../images/卫宁健康logo2.png" preserveAspectRatio="xMidYMid meet"/>
+  
+  <rect id="win_atom_6" x="40" y="130" width="3" height="480" fill="#D4A84B" fill-opacity="0.65"/>
+  
+  <rect id="win_atom_7" x="60" y="120" width="1160" height="50" fill="#FAF6F1" rx="6"/>
+  <rect id="win_atom_8" x="60" y="120" width="4" height="50" fill="#CE704B"/>
+  <text id="win_atom_9" x="80" y="152" fill="#CE704B" font-family="Microsoft YaHei, Arial, sans-serif" font-size="15" font-weight="bold">核心观点</text>
+  <text id="win_atom_10" x="170" y="152" fill="#333333" font-family="Microsoft YaHei, Arial, sans-serif" font-size="15">{{KEY_MESSAGE}}</text>
+  
+  <rect id="win_atom_11" x="60" y="190" width="1160" height="440" fill="#FFFFFF" stroke="#FAF6F1" stroke-width="2" rx="8"/>
+  <text id="win_atom_12" x="640" y="410" text-anchor="middle" fill="#C4C4C4" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16">{{CONTENT_AREA}}</text>
+  
+  <path id="win_atom_13" d="M0,690 Q160,680 320,690 T640,680 T960,690 T1280,680 L1280,720 L0,720 Z" fill="#CE704B" fill-opacity="0.06"/>
+  
+  <rect id="win_atom_14" x="0" y="650" width="1280" height="70" fill="#FDF8F3"/>
+  
+  <text id="win_atom_15" x="60" y="685" fill="#6B6B6B" font-family="Microsoft YaHei, Arial, sans-serif" font-size="11">数据来源：{{SOURCE}}</text>
+  
+  <circle id="win_atom_16" cx="50" cy="670" r="3" fill="#D4A84B" fill-opacity="0.55"/>
+</svg>

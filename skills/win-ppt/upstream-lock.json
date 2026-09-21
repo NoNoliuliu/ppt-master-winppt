@@ -1,0 +1,10 @@
+{
+  "local_version": "2.0.0",
+  "upstream_repository": "https://github.com/hugohe3/ppt-master",
+  "upstream_tag": "v6.6.0",
+  "upstream_commit": "a50758ac29ec027e85966db33e2ae80031446756",
+  "baseline_version": "1.0.2",
+  "baseline_registry_hash": "894821d760fc87dbce7e29e390021f800e60b2cccd09d98fe1f4f61d0971861d",
+  "local_contract": "references/win-local.md",
+  "maintenance": "pinned snapshot; upgrade via Obsidian registry; preserve local overlay"
+}

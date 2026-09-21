@@ -1,0 +1,49 @@
+<svg height="720" width="1280" data-pptx-master="win_4" data-pptx-master-name="卫宁健康-暖调大地色" data-pptx-layout="win_4_3" data-pptx-layout-name="02_toc" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1280 720">
+  <defs>
+    <linearGradient id="topBar" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#BD1B01"/>
+      <stop offset="50%" stop-color="#D4A84B"/>
+      <stop offset="100%" stop-color="#BD1B01"/>
+    </linearGradient>
+  </defs>
+  
+  <rect id="win_atom_1" width="1280" height="720" fill="#FDF8F3"/>
+  
+  <rect id="win_atom_2" x="0" y="0" width="1280" height="8" fill="url(#topBar)"/>
+  
+  <rect id="win_atom_3" x="60" y="80" width="6" height="40" fill="#D4A84B"/>
+  
+  <text id="win_atom_4" x="85" y="110" fill="#BD1B01" font-family="Microsoft YaHei, PingFang SC, Arial, sans-serif" font-size="32" font-weight="bold">目录</text>
+  
+  <!-- Left column -->
+  <text id="win_atom_5" x="80" y="250" fill="#BD1B01" fill-opacity="0.15" font-family="Arial, sans-serif" font-size="72" font-weight="bold">01</text>
+  <rect id="win_atom_6" x="175" y="210" width="4" height="40" fill="#D4A84B"/>
+  <text id="win_atom_7" x="195" y="225" fill="#333333" font-family="Microsoft YaHei, Arial, sans-serif" font-size="20" font-weight="bold">{{TOC_ITEM_1_TITLE}}</text>
+  <text id="win_atom_8" x="195" y="250" fill="#666666" font-family="Microsoft YaHei, Arial, sans-serif" font-size="13">{{TOC_ITEM_1_DESC}}</text>
+  
+  <text id="win_atom_9" x="80" y="370" fill="#BD1B01" fill-opacity="0.15" font-family="Arial, sans-serif" font-size="72" font-weight="bold">03</text>
+  <rect id="win_atom_10" x="175" y="330" width="4" height="40" fill="#D4A84B"/>
+  <text id="win_atom_11" x="195" y="345" fill="#333333" font-family="Microsoft YaHei, Arial, sans-serif" font-size="20" font-weight="bold">{{TOC_ITEM_3_TITLE}}</text>
+  <text id="win_atom_12" x="195" y="370" fill="#666666" font-family="Microsoft YaHei, Arial, sans-serif" font-size="13">{{TOC_ITEM_3_DESC}}</text>
+  
+  <text id="win_atom_13" x="80" y="490" fill="#BD1B01" fill-opacity="0.15" font-family="Arial, sans-serif" font-size="72" font-weight="bold">05</text>
+  <rect id="win_atom_14" x="175" y="450" width="4" height="40" fill="#D4A84B"/>
+  <text id="win_atom_15" x="195" y="465" fill="#333333" font-family="Microsoft YaHei, Arial, sans-serif" font-size="20" font-weight="bold">{{TOC_ITEM_5_TITLE}}</text>
+  <text id="win_atom_16" x="195" y="490" fill="#666666" font-family="Microsoft YaHei, Arial, sans-serif" font-size="13">{{TOC_ITEM_5_DESC}}</text>
+  
+  <!-- Right column -->
+  <text id="win_atom_17" x="680" y="250" fill="#BD1B01" fill-opacity="0.15" font-family="Arial, sans-serif" font-size="72" font-weight="bold">02</text>
+  <rect id="win_atom_18" x="775" y="210" width="4" height="40" fill="#D4A84B"/>
+  <text id="win_atom_19" x="795" y="225" fill="#333333" font-family="Microsoft YaHei, Arial, sans-serif" font-size="20" font-weight="bold">{{TOC_ITEM_2_TITLE}}</text>
+  <text id="win_atom_20" x="795" y="250" fill="#666666" font-family="Microsoft YaHei, Arial, sans-serif" font-size="13">{{TOC_ITEM_2_DESC}}</text>
+  
+  <text id="win_atom_21" x="680" y="370" fill="#BD1B01" fill-opacity="0.15" font-family="Arial, sans-serif" font-size="72" font-weight="bold">04</text>
+  <rect id="win_atom_22" x="775" y="330" width="4" height="40" fill="#D4A84B"/>
+  <text id="win_atom_23" x="795" y="345" fill="#333333" font-family="Microsoft YaHei, Arial, sans-serif" font-size="20" font-weight="bold">{{TOC_ITEM_4_TITLE}}</text>
+  <text id="win_atom_24" x="795" y="370" fill="#666666" font-family="Microsoft YaHei, Arial, sans-serif" font-size="13">{{TOC_ITEM_4_DESC}}</text>
+  
+  <text id="win_atom_25" x="680" y="490" fill="#BD1B01" fill-opacity="0.15" font-family="Arial, sans-serif" font-size="72" font-weight="bold">06</text>
+  <rect id="win_atom_26" x="775" y="450" width="4" height="40" fill="#D4A84B"/>
+  <text id="win_atom_27" x="795" y="465" fill="#333333" font-family="Microsoft YaHei, Arial, sans-serif" font-size="20" font-weight="bold">{{TOC_ITEM_6_TITLE}}</text>
+  <text id="win_atom_28" x="795" y="490" fill="#666666" font-family="Microsoft YaHei, Arial, sans-serif" font-size="13">{{TOC_ITEM_6_DESC}}</text>
+</svg>

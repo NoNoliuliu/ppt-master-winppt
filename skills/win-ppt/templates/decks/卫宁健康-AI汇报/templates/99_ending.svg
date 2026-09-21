@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" height="720" width="1280" data-pptx-master="win_1" data-pptx-master-name="卫宁健康-AI汇报" data-pptx-layout="win_1_5" data-pptx-layout-name="99_ending" viewBox="0 0 1280 720">
+    <!-- 模板: 结束页 - Anthropic 风格 -->
+    
+    <defs>
+        <!-- 背景渐变 -->
+        <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#1A1A2E"/>
+            <stop offset="50%" style="stop-color:#16213E"/>
+            <stop offset="100%" style="stop-color:#0F0F1A"/>
+        </linearGradient>
+        <!-- 橙色渐变 -->
+        <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#D97757"/>
+            <stop offset="100%" style="stop-color:#E8956F"/>
+        </linearGradient>
+        <!-- 光晕效果 -->
+        <radialGradient id="glowOrange" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" style="stop-color:#D97757;stop-opacity:0.2"/>
+            <stop offset="100%" style="stop-color:#D97757;stop-opacity:0"/>
+        </radialGradient>
+        <radialGradient id="glowBlue" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" style="stop-color:#4A90D9;stop-opacity:0.15"/>
+            <stop offset="100%" style="stop-color:#4A90D9;stop-opacity:0"/>
+        </radialGradient>
+    </defs>
+    
+    <!-- 渐变背景 -->
+    <rect id="win_atom_1" width="1280" height="720" fill="url(#bgGradient)"/>
+    
+    <!-- 网格装饰线 -->
+    <line id="win_atom_3" x1="0" y1="180" x2="1280" y2="180" stroke="#FFFFFF" stroke-opacity="0.02" stroke-width="1"/>
+        <line id="win_atom_4" x1="0" y1="360" x2="1280" y2="360" stroke="#FFFFFF" stroke-opacity="0.02" stroke-width="1"/>
+        <line id="win_atom_5" x1="0" y1="540" x2="1280" y2="540" stroke="#FFFFFF" stroke-opacity="0.02" stroke-width="1"/>
+        <line id="win_atom_6" x1="320" y1="0" x2="320" y2="720" stroke="#FFFFFF" stroke-opacity="0.02" stroke-width="1"/>
+        <line id="win_atom_7" x1="640" y1="0" x2="640" y2="720" stroke="#FFFFFF" stroke-opacity="0.02" stroke-width="1"/>
+        <line id="win_atom_8" x1="960" y1="0" x2="960" y2="720" stroke="#FFFFFF" stroke-opacity="0.02" stroke-width="1"/>
+    <!-- 光晕效果 -->
+    <ellipse id="win_atom_9" cx="300" cy="200" rx="250" ry="180" fill="url(#glowBlue)"/>
+    <ellipse id="win_atom_10" cx="980" cy="500" rx="280" ry="200" fill="url(#glowOrange)"/>
+    
+    <!-- 神经网络连接装饰 -->
+    <path id="win_atom_12" d="M150,150 Q250,100 350,180" stroke="#4A90D9" stroke-opacity="0.3" stroke-width="1" fill="none"/>
+        <path id="win_atom_13" d="M350,180 Q420,250 380,320" stroke="#4A90D9" stroke-opacity="0.3" stroke-width="1" fill="none"/>
+        <path id="win_atom_14" d="M950,400 Q1050,350 1100,420" stroke="#4A90D9" stroke-opacity="0.3" stroke-width="1" fill="none"/>
+        <path id="win_atom_15" d="M1100,420 Q1150,500 1080,550" stroke="#4A90D9" stroke-opacity="0.3" stroke-width="1" fill="none"/>
+    <!-- 节点装饰 -->
+    <circle id="win_atom_17" cx="150" cy="150" r="5" fill="#4A90D9" fill-opacity="0.5"/>
+        <circle id="win_atom_18" cx="350" cy="180" r="7" fill="#4A90D9" fill-opacity="0.5"/>
+        <circle id="win_atom_19" cx="380" cy="320" r="4" fill="#4A90D9" fill-opacity="0.5"/>
+    <circle id="win_atom_21" cx="950" cy="400" r="6" fill="#D97757" fill-opacity="0.6"/>
+        <circle id="win_atom_22" cx="1100" cy="420" r="8" fill="#D97757" fill-opacity="0.6"/>
+        <circle id="win_atom_23" cx="1080" cy="550" r="5" fill="#D97757" fill-opacity="0.6"/>
+    <!-- 感谢语标签 -->
+    <text id="win_atom_24" x="640" y="240" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="500" fill="#D97757" letter-spacing="3">
+        THANK YOU
+    </text>
+    
+    <!-- 主感谢语 -->
+    <text id="win_atom_25" x="640" y="310" text-anchor="middle" font-family="Arial, sans-serif" font-size="52" font-weight="bold" fill="#FFFFFF">
+        {{THANK_YOU}}
+    </text>
+    
+    <!-- 装饰分隔线 -->
+    <rect id="win_atom_26" x="540" y="350" width="200" height="3" fill="url(#accentGradient)" rx="1.5"/>
+    
+    <!-- 副标语 -->
+    <text id="win_atom_27" x="640" y="410" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" fill="#FFFFFF" fill-opacity="0.7">
+        {{ENDING_SUBTITLE}}
+    </text>
+    
+    <!-- 联系信息卡片 -->
+    <rect id="win_atom_28" x="440" y="460" width="400" height="120" fill="#FFFFFF" fill-opacity="0.05" stroke="#FFFFFF" stroke-opacity="0.1" stroke-width="1" rx="12"/>
+    
+    <text id="win_atom_29" x="640" y="505" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#FFFFFF">
+        {{CONTACT_INFO}}
+    </text>
+    <text id="win_atom_30" x="640" y="535" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#FFFFFF" fill-opacity="0.7">
+        {{CONTACT_EMAIL}}
+    </text>
+    <text id="win_atom_31" x="640" y="560" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#FFFFFF" fill-opacity="0.6">
+        {{CONTACT_URL}}
+    </text>
+    
+    <!-- 底部分隔线 -->
+    <rect id="win_atom_32" x="60" y="640" width="1160" height="1" fill="#FFFFFF" fill-opacity="0.1"/>
+    
+    <!-- 底部信息 -->
+    <text id="win_atom_33" x="60" y="680" font-family="Arial, sans-serif" font-size="14" fill="#64748B">
+        {{DATE}}
+    </text>
+    <text id="win_atom_34" x="1220" y="680" text-anchor="end" font-family="Arial, sans-serif" font-size="14" fill="#64748B">
+        {{COPYRIGHT}}
+    </text>
+
+</svg>
