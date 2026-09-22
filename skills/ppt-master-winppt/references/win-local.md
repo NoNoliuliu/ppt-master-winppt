@@ -43,4 +43,51 @@ Image configuration keeps process environment precedence and the old repository-
 
 ## 5. Managed upgrades
 
-This is a maintained adaptation of `https://github.com/hugohe3/ppt-master`, pinned to upstream v6.6.0 / `a50758ac29ec027e85966db33e2ae80031446756`; local version 2.0.0 is independent. Keep the MIT license, author identity, and attribution checks. Upgrade in an isolated candidate, preserve this contract and all local template assets, validate, then obtain the registry-required publication approval. Use `obsidian-skill-registry` to publish and sync; never update a deployed copy by pulling upstream in place.
+This is a maintained adaptation of `https://github.com/hugohe3/ppt-master`, pinned to upstream v6.6.0 / `a50758ac29ec027e85966db33e2ae80031446756`; local version 2.1.0 is independent. Keep the MIT license, author identity, and attribution checks. Upgrade in an isolated candidate, preserve this contract and all local template assets, validate, then obtain the registry-required publication approval. Use `obsidian-skill-registry` to publish and sync; never update a deployed copy by pulling upstream in place.
+
+## Environment preflight
+
+After the attribution guard succeeds, run the environment check at the start of every task using the exact interpreter that will run subsequent scripts. Repeat if that interpreter changes. A previous success on the same machine is not sufficient.
+
+1. Resolve Python 3.10+ from the host's actual runtime configuration. WorkBuddy may supply a managed virtual environment, but its path is machine-specific: never assume a fixed `~/.workbuddy/binaries/...` path. Record the absolute interpreter and use it consistently for guard, bootstrap, preview and export. Do not substitute an unrelated `python` or `pip` command later.
+2. Run `"<python>" "<skill-dir>/scripts/bootstrap_env.py" --check-only`. Exit 0 means the PPT-profile packages import successfully and declared minimum versions are met. Exit 1 means core dependencies are missing/unusable. Exit 2 means unsupported Python or a check failure; resolve it before continuing.
+3. For exit 1, select a writable host-approved venv or create a dedicated project venv outside the managed Skill directory. Run the bootstrap without `--check-only` using that venv's interpreter. It installs only unavailable core packages and rechecks them in a fresh process. Follow host permissions; never elevate into system Python, use sudo pip, or bypass an externally managed environment. No need to repeat the user's presentation design approval for routine authorized dependency setup.
+4. The default `--profile ppt` checks the template/export baseline (PyYAML, python-pptx, lxml, Pillow, XlsxWriter). Continue this route after exit 0. Check/install Flask separately with `--profile preview`; its failure only disables browser preview/confirmation UI, not PPT generation. This check is not proof that every optional route is ready: consult the chosen route and `requirements.txt` for its extra packages, external tools, fonts and API configuration. Install only extras required by the requested route.
+
+macOS/Linux example (replace placeholders with actual absolute paths):
+
+```sh
+"<python>" "<skill-dir>/scripts/bootstrap_env.py" --check-only
+"<python>" -m venv "<project-dir>/.venv-ppt"
+"<project-dir>/.venv-ppt/bin/python" "<skill-dir>/scripts/bootstrap_env.py"
+```
+
+Windows PowerShell equivalent (no activation or execution-policy change needed):
+
+```powershell
+& "<python.exe>" "<skill-dir>/scripts/bootstrap_env.py" --check-only
+& "<python.exe>" -m venv "<project-dir>/.venv-ppt"
+& "<project-dir>/.venv-ppt/Scripts/python.exe" "<skill-dir>/scripts/bootstrap_env.py"
+```
+
+Use an existing approved venv instead of creating one when available. Pip inherits the chosen environment's standard configuration (`pip.ini`/`pip.conf`, `PIP_INDEX_URL`, proxy settings). Use only the organization's supplied mirror/proxy values; never invent an internal URL, commit credentials, disable TLS, or copy credential-bearing pip output into chat. Installation failure is exit 2 for the selected profile only. A failed PPT baseline blocks that dependent route; a failed preview profile does not block export.
+
+### Capability degradation: preserve the requested PPT deliverable
+
+Attempt preview setup by running `bootstrap_env.py --profile preview` with the approved venv before its first use. If installation or service startup fails, report that browser preview is unavailable, use chat for confirmations, and continue PPT generation when its dependencies are ready. Do not repeatedly retry a failed optional installation. If preview starts, report its actual URL and health result; never claim browser-level validation from imports alone.
+
+Do not make narration, animation or other optional enhancements prerequisites for a basic PPT. On optional failure, disclose the omitted feature and continue a usable basic deck when the user's requirements permit. If the user explicitly makes a feature mandatory, pause only that dependent delivery instead of silently dropping it. Preserve existing content and confirmations.
+
+Missing source-conversion dependencies may be bypassed only when equivalent complete source content is actually available (for example, user-supplied text instead of a DOCX conversion). Never omit unread material, invent text, or bypass source/quality/attribution checks to claim a successful minimal PPT. Do not substitute unsupported SVG effects merely to require additional packages; use a supported simpler layout when consistent with the approved design.
+
+### Windows execution and incomplete-package diagnostics
+
+On Windows, use the host's working PowerShell with an absolute Python executable and quoted absolute script/project paths. Do not depend on Bash, `dirname`, `ls`, `python3`, or Unix path conversion. If those commands fail or produce paths such as `c:\c\Users`, stop retrying that command style and resolve the actual Windows paths. Do not change global PATH or execution policy to run this Skill.
+
+For bootstrap diagnostics use `--report "<project-dir>/bootstrap-report.txt"`; it writes UTF-8 directly via Python and returns the same check status. For other tools whose captured output is empty/garbled, use Python `subprocess.run` with argument lists and write the captured bytes to a diagnostic file using explicit decoding/UTF-8 encoding, then inspect both the exit code and file. PowerShell redirection can use UTF-16 depending on version; do not infer command success from an empty console. Keep credentials out of logs.
+
+Bootstrap reports the presence of the export entry, checker, confirmation UI and preview server independently of pip dependencies. A missing Skill component requires restoring the correct complete package, not installing Flask. Missing optional UI permits chat confirmation; missing preview permits basic PPT export. Never invent a legacy `modes/visual-styles` path: use the installed route and Executor references. Capture the Skill version, interpreter and exact failed path when reporting an incomplete installation.
+
+### Optional backup compatibility
+
+Native editable PPTX is the basic delivery. An optional SVG/image backup requiring PNG fallback is a separate capability: if raster dependencies fail, disclose the omitted backup and deliver the valid native PPTX. Do not call an SVG-only backup compatible with the recipient's Office version without testing; CairoSVG also requires a working native Cairo runtime, so successful pip installation alone is not proof of raster readiness.

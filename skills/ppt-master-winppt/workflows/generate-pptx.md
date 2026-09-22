@@ -252,6 +252,8 @@ Read the core as one batch with the exact detail files named by the retained `sp
 
 **Design Parameter Confirmation (Mandatory)**: before the first SVG, output one confirmation listing the compact communication objective, canvas dimensions, body font size, color scheme (primary/secondary/accent HEX), font plan, the per-role calibration table, and the live-preview URL from the launcher below. The calibration table comes from `python3 ${SKILL_DIR}/scripts/text_measure.py calibrate <project_path> --outline`: every lock role with family, size, CJK and Latin ≈ chars per 100 px, and the longest planned §IX line per role in px — the checker's own estimator with wrapping headroom, written to `validation/text_calibration.json`. If the preview failed to launch, say so here rather than proceeding silently.
 
+**Local capability fallback**: Follow `references/win-local.md` capability degradation. Attempt preview dependency setup/startup; if unavailable, disclose it and continue PPT generation with chat confirmation unless the user explicitly requires preview. Preview failure is not an export dependency failure.
+
 **Live Preview Auto-Startup (Mandatory)**: before the first SVG, start the editor and keep it running through Step 7:
 
 ```bash

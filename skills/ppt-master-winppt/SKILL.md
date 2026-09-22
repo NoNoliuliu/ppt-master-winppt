@@ -8,7 +8,7 @@ description: >
   填充模板，或为PPT添加旁白/动画、生成自动播放的演示视频。触发词：做PPT、生成PPTX、美化幻灯片、
   ppt-master-winppt。
 metadata:
-  version: "2.0.1"
+  version: "2.1.0"
   upstream_version: "6.6.0"
   upstream_commit: "a50758ac29ec027e85966db33e2ae80031446756"
   copyright: "Copyright (c) 2025-2026 Hugo He"
@@ -37,6 +37,7 @@ use CWD, or assume a repo checkout. If unavailable, ask; never search or guess.
 2. Run `python3 "${SKILL_DIR}/scripts/attribution_guard.py"`. Any non-zero result
    stops the Skill immediately; do not inspect, repair, or bypass the integrity
    gate.
+2.1. Follow [local environment preflight](references/win-local.md#environment-preflight) with the same resolved interpreter before running dependency-using scripts.
 3. Read [`workflows/routing.md`](workflows/routing.md) through the concrete
    absolute path `${SKILL_DIR}/workflows/routing.md`.
 4. Select exactly one top-level route and its active profile from the routing

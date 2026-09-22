@@ -10,7 +10,7 @@
 
 下载本仓库 ZIP 并解压，将 `skills/ppt-master-winppt` 整个文件夹放入所用 AI 工具支持的 Skill 目录，然后重新加载 Skill。也可克隆本仓库；运行时需使用 Skill 所在目录的绝对路径。
 
-运行环境为 Python 3.10+，按 `skills/ppt-master-winppt/requirements.txt` 安装对应依赖。不同功能的额外依赖见其工作流说明。内置 `lib` 是历史 Windows CPython 3.13 依赖，不适用于其他平台或 Python 版本，不能代替全部新版依赖。
+运行环境为 Python 3.10+。2.1.0 提供按功能检查和联网安装依赖：在实际运行的虚拟环境中执行 `scripts/bootstrap_env.py`，默认检查 PPT 制作依赖；`--profile preview` 单独检查/安装预览依赖，`--check-only` 只检查，`--report <文件>` 输出 UTF-8 诊断。预览不可用时说明原因并降级为聊天交互，不阻止依赖齐全的基本 PPT 生成。不同功能的额外依赖见其工作流说明。内置 `lib` 是历史 Windows CPython 3.13 依赖，不适用于其他平台或 Python 版本，不能代替全部新版依赖。
 
 API 凭据通过进程环境变量提供，或用 `WIN_PPT_ENV_FILE` 指定本地配置文件。不要把实际配置或凭据提交到 GitHub。
 
@@ -75,3 +75,7 @@ API 凭据通过进程环境变量提供，或用 `WIN_PPT_ENV_FILE` 指定本�
 Skill标识、安装目录和仓库名称统一为 `ppt-master-winppt`，模板、Logo和个性化规则保持不变。旧版使用者应在备份自定义配置后替换旧目录，避免新旧两个Skill同时被加载。
 
 豆包工作目前会因本包文件数量超限报 `FILE_COUNT_EXCEEDED`，文件同步不代表应用已加载；此问题尚未修复。Windows实机及真实PowerPoint显示仍未验证。
+
+## 2.1.0 更新
+
+保留中文技能描述和四套公司模板，新增解释器一致性检查、虚拟环境联网补包、组件完整性提示、Windows执行指引及UTF-8诊断。附加功能失败不统一阻断基本PPT，真正影响当前导出或必需资料读取的问题仍需解决。已验证隔离环境安装、重复检查及6项自检测试；完整浏览器预览和Windows实机仍未验收。豆包文件数量超限仍未解决。
