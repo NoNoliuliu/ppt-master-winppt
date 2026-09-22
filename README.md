@@ -1,4 +1,6 @@
-# ppt-master-winppt
+# ppt-master-winppt — 卫宁 PPT 制作技能
+
+> AI 驱动的可编辑 PPTX 生成与美化工作流：各类资料一键转成可编辑 PowerPoint，内置卫宁健康品牌模板。
 
 原名 **win-ppt**，现统一使用 `ppt-master-winppt` 作为 Skill 标识、安装目录和仓库名称。
 
