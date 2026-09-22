@@ -1,5 +1,5 @@
 ---
-name: win-ppt
+name: ppt-master-winppt
 description: >
   AI-driven presentation workflow for generating editable PPTX decks and slides,
   reconstructing page visuals, creating reusable Brand/Style/Layout/Deck
@@ -7,9 +7,9 @@ description: >
   Use when the user asks to create, generate, reconstruct, regenerate, beautify,
   redesign, template, fill, or enhance a presentation, PPT, PPTX, slide deck, or
   courseware — including adding narration or animation to one — requests a
-  presentation-authored narrated/self-running video, or mentions win-ppt.
+  presentation-authored narrated/self-running video, or mentions ppt-master-winppt.
 metadata:
-  version: "2.0.0"
+  version: "2.0.1"
   upstream_version: "6.6.0"
   upstream_commit: "a50758ac29ec027e85966db33e2ae80031446756"
   copyright: "Copyright (c) 2025-2026 Hugo He"
@@ -20,7 +20,7 @@ metadata:
     - "SPONSORS_CN.md"
 ---
 
-# win-ppt Skill
+# ppt-master-winppt Skill
 
 Local adaptation of PPT Master by Hugo He. Upstream attribution and integrity checks are retained.
 Read [Local customization contract](references/win-local.md) before route selection; it owns the local template, approval, and source-preservation overrides.
@@ -31,7 +31,7 @@ PPT Master is a routed presentation workflow. This entry owns global execution d
 
 **Hard rule — paths before commands**: Retain the host-provided absolute
 directory containing this file as `SKILL_DIR`. Per tool call, expand
-`${SKILL_DIR}` and replace any `skills/ppt-master/` or `skills/win-ppt/` prefix with it. Never `cd`,
+`${SKILL_DIR}` and replace any `skills/ppt-master/` or `skills/ppt-master-winppt/` prefix with it. Never `cd`,
 use CWD, or assume a repo checkout. If unavailable, ask; never search or guess.
 
 1. Read this file.

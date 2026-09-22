@@ -59,7 +59,7 @@ def get_env_candidates() -> list[Path]:
     explicit = os.environ.get('WIN_PPT_ENV_FILE')
     if explicit:
         return [Path(explicit).expanduser().resolve()]
-    # Preserve win-ppt's project/repository-root fallback. Never silently
+    # Preserve ppt-master-winppt's project/repository-root fallback. Never silently
     # adopt another Skill's user-global configuration.
     return [REPO_ROOT / '.env']
 

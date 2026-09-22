@@ -1,10 +1,10 @@
-# win-ppt Local Customization Contract
+# ppt-master-winppt Local Customization Contract
 
 Read this file at entry. These local rules override conflicting defaults in the imported PPT Master runtime; keep its schema, quality checks, attribution, and export implementation intact.
 
 ## 1. Identity and template choice
 
-Keep the invocation name `win-ppt`. Default Generate offers these local templates first: `卫宁健康-AI汇报`, `卫宁健康-橘色`, `卫宁健康-深蓝色`, `卫宁健康-暖调大地色`. Their original files remain under `templates/layouts/`; their registered v6.6-compatible workspaces are under `templates/decks/`. Read `templates/win-layouts-index.json` for the four choices. Other upstream templates and free design remain available on explicit request.
+Keep the invocation name `ppt-master-winppt`. Default Generate offers these local templates first: `卫宁健康-AI汇报`, `卫宁健康-橘色`, `卫宁健康-深蓝色`, `卫宁健康-暖调大地色`. Their original files remain under `templates/layouts/`; their registered v6.6-compatible workspaces are under `templates/decks/`. Read `templates/win-layouts-index.json` for the four choices. Other upstream templates and free design remain available on explicit request.
 
 Default Generate uses chat confirmation unless the user requests the browser UI. In Step 3 prepare the four local choices; in Stage 1 use `templates` as the default mode and require an explicit choice before installation. Reuse an exact choice already supplied for this task. Do not silently default to free design, select a template for the user, or ask them to approve the same choice twice. Stage 1 also retains the upstream communication fields; after it closes, install the selected modern workspace with `apply_template.py` before preparing Stage 2.
 

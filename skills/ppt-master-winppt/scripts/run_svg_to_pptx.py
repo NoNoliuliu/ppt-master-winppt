@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""win-ppt - Export compatibility wrapper using the current PPTX exporter.
+"""ppt-master-winppt - Export compatibility wrapper using the current PPTX exporter.
 
 Usage:
     python3 scripts/run_svg_to_pptx.py <project_path> [export_options]

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Behavioral tests for win-ppt local image and configuration compatibility."""
+"""Behavioral tests for ppt-master-winppt local image and configuration compatibility."""
 import os
 import sys
 import tempfile

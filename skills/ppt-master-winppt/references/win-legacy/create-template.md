@@ -54,7 +54,7 @@ ls -la "<reference_source_path>"
 If the reference source is a `.pptx` template file, use the unified preparation helper:
 
 ```bash
-python3 skills/win-ppt/scripts/win_pptx_template_import.py "<reference_template.pptx>"
+python3 skills/ppt-master-winppt/scripts/win_pptx_template_import.py "<reference_template.pptx>"
 ```
 
 This helper performs the full PPTX reference preparation in one workspace:
@@ -115,7 +115,7 @@ Interpretation rule:
 - Before creating any template file, the agent MUST finish reading all SVG files listed in `reference_svg_selection.json`
 - The agent MUST explicitly report the read slide indexes before starting template generation
 
-Do **not** treat the imported PPTX or exported slide SVGs as direct final template assets. The goal is to reconstruct a clean, maintainable win-ppt template package, not to perform 1:1 shape translation.
+Do **not** treat the imported PPTX or exported slide SVGs as direct final template assets. The goal is to reconstruct a clean, maintainable ppt-master-winppt template package, not to perform 1:1 shape translation.
 
 ---
 
@@ -137,10 +137,10 @@ If no `.pptx` source is involved, this step can be skipped.
 ## Step 3: Create Template Directory
 
 ```bash
-mkdir -p "skills/win-ppt/templates/layouts/<template_id>"
+mkdir -p "skills/ppt-master-winppt/templates/layouts/<template_id>"
 ```
 
-> **Output location**: Global templates go to `skills/win-ppt/templates/layouts/`; project templates go to `projects/<project>/templates/`
+> **Output location**: Global templates go to `skills/ppt-master-winppt/templates/layouts/`; project templates go to `projects/<project>/templates/`
 >
 > The generated directory name must match the final template ID used in `layouts_index.json`.
 
@@ -187,13 +187,13 @@ The role should use the import output to anchor objective facts such as theme co
 ## Step 5: Validate Template Assets
 
 ```bash
-ls -la "skills/win-ppt/templates/layouts/<template_id>"
+ls -la "skills/ppt-master-winppt/templates/layouts/<template_id>"
 ```
 
 Run SVG validation on the template directory:
 
 ```bash
-python3 skills/win-ppt/scripts/svg_quality_checker.py "skills/win-ppt/templates/layouts/<template_id>" --format <canvas_format>
+python3 skills/ppt-master-winppt/scripts/svg_quality_checker.py "skills/ppt-master-winppt/templates/layouts/<template_id>" --format <canvas_format>
 ```
 
 **Checklist**:
@@ -211,7 +211,7 @@ This step is a **hard gate**. Do not register the template into the library inde
 
 ## Step 6: Register Template in Library Index
 
-Add a top-level entry to `skills/win-ppt/templates/layouts/layouts_index.json`. The file is a flat map of `template_id �?{ label, summary, keywords }`:
+Add a top-level entry to `skills/ppt-master-winppt/templates/layouts/layouts_index.json`. The file is a flat map of `template_id �?{ label, summary, keywords }`:
 
 ```json
 "<template_id>": {
@@ -233,7 +233,7 @@ Also sync the summary table in `templates/layouts/README.md` (the human-facing i
 ## Template Creation Complete
 
 **Template Name**: <template_id> (<display_name>)
-**Template Path**: `skills/win-ppt/templates/layouts/<template_id>/`
+**Template Path**: `skills/ppt-master-winppt/templates/layouts/<template_id>/`
 **Category**: <category>
 **Canvas Format**: <canvas_format>
 **Index Registration**: Done

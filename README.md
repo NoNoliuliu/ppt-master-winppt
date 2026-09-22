@@ -1,12 +1,14 @@
-# win-ppt
+# ppt-master-winppt
+
+原名 **win-ppt**，自 **2.0.1** 起统一更名为 `ppt-master-winppt`。下文 ZIP、1.0.2 和 2.0.0 的历史对比对应更名前版本，名称迁移不改变这些历史行为。
 
 基于 [Hugo He / PPT Master](https://github.com/hugohe3/ppt-master) v6.6.0 的本地改编版，保留四套卫宁健康模板及个性化工作规则。
 
 ## 获取与安装
 
-下载本仓库 ZIP 并解压，将 `skills/win-ppt` 整个文件夹放入所用 AI 工具支持的 Skill 目录，然后重新加载 Skill。也可克隆本仓库；运行时需使用 Skill 所在目录的绝对路径。
+下载本仓库 ZIP 并解压，将 `skills/ppt-master-winppt` 整个文件夹放入所用 AI 工具支持的 Skill 目录，然后重新加载 Skill。也可克隆本仓库；运行时需使用 Skill 所在目录的绝对路径。
 
-运行环境为 Python 3.10+，按 `skills/win-ppt/requirements.txt` 安装对应依赖。不同功能的额外依赖见其工作流说明。内置 `lib` 是历史 Windows CPython 3.13 依赖，不适用于其他平台或 Python 版本，不能代替全部新版依赖。
+运行环境为 Python 3.10+，按 `skills/ppt-master-winppt/requirements.txt` 安装对应依赖。不同功能的额外依赖见其工作流说明。内置 `lib` 是历史 Windows CPython 3.13 依赖，不适用于其他平台或 Python 版本，不能代替全部新版依赖。
 
 API 凭据通过进程环境变量提供，或用 `WIN_PPT_ENV_FILE` 指定本地配置文件。不要把实际配置或凭据提交到 GitHub。
 
@@ -16,13 +18,13 @@ API 凭据通过进程环境变量提供，或用 `WIN_PPT_ENV_FILE` 指定本�
 - 默认复制导入，保留原文件。
 - 沿用明确的模板选择；设计确认后连续逐页执行，避免重复询问。
 - 允许必要的图片检查；每页读取锁定设计规范。
-- 完整本地规则见 [win-local.md](skills/win-ppt/references/win-local.md)。
+- 完整本地规则见 [win-local.md](skills/ppt-master-winppt/references/win-local.md)。
 
 ## 版本关系与对比口径
 
-本文区分两个“原版”：**原版 ZIP**指升级前的公司 win-ppt 分发包；**上游原版**指 Hugo He 的 PPT Master v6.6.0。两者不是同一个版本。
+本文区分两个“原版”：**原版 ZIP**指升级前的公司 ppt-master-winppt 分发包；**上游原版**指 Hugo He 的 PPT Master v6.6.0。两者不是同一个版本。
 
-版本关系为：公司原版 ZIP → 本地 win-ppt 1.0.2（规则修正）→ win-ppt 2.0.0（合入上游 v6.6.0 并保留本地改编）→ 本仓库分享整理版。本地版本号与上游版本号独立。公司 ZIP 对应的确切上游祖先提交未知，不作完整 Git 三方合并的声明。
+版本关系为：公司原版 ZIP → 本地 ppt-master-winppt 1.0.2（规则修正）→ ppt-master-winppt 2.0.0（合入上游 v6.6.0 并保留本地改编）→ 本仓库分享整理版。本地版本号与上游版本号独立。公司 ZIP 对应的确切上游祖先提交未知，不作完整 Git 三方合并的声明。
 
 ## 与公司原版 ZIP 的对比
 
@@ -56,9 +58,9 @@ API 凭据通过进程环境变量提供，或用 `WIN_PPT_ENV_FILE` 指定本�
 
 ## 与上游 PPT Master v6.6.0 的对比
 
-| 项目 | 上游 v6.6.0 | win-ppt 2.0.0 分享版 |
+| 项目 | 上游 v6.6.0 | ppt-master-winppt 2.0.0 分享版 |
 |---|---|---|
-| 身份与来源 | PPT Master 官方项目 | 使用 win-ppt 名称，保留上游作者、许可证和归属检查 |
+| 身份与来源 | PPT Master 官方项目 | 使用 ppt-master-winppt 名称，保留上游作者、许可证和归属检查 |
 | 模板默认策略 | 普通生成可走自由设计，明确模板意图时使用模板 | 默认优先四套卫宁模板，沿用用户明确选择；其他上游模板和自由设计仍可按要求使用 |
 | 确认界面 | 提供 UI 与聊天确认路径 | 默认聊天确认，用户要求时才使用浏览器 UI |
 | 设计执行约束 | 按上游路由与工作流执行 | 叠加本地确认规则；普通生成确认后主代理连续逐页执行，每页重读锁定规范，不默认分批或委派 |
@@ -75,7 +77,7 @@ API 凭据通过进程环境变量提供，或用 `WIN_PPT_ENV_FILE` 指定本�
 
 ## 分享版与本地2.0.0的区别
 
-这是 win-ppt 2.0.0 的分享整理版：移除两份包含固定本机路径和未核实医院示例数字的历史生成脚本，移除个人部署标记；保留核心生成流程与品牌模板。未包含升级备份、审计日志或测试输出。分享仓库独立于原作者项目，不代表官方发布。
+这是 ppt-master-winppt 2.0.0 的分享整理版：移除两份包含固定本机路径和未核实医院示例数字的历史生成脚本，移除个人部署标记；保留核心生成流程与品牌模板。未包含升级备份、审计日志或测试输出。分享仓库独立于原作者项目，不代表官方发布。
 
 ## 验证范围
 
@@ -83,4 +85,10 @@ API 凭据通过进程环境变量提供，或用 `WIN_PPT_ENV_FILE` 指定本�
 
 ## 来源与许可
 
-上游版本和提交见 [upstream-lock.json](skills/win-ppt/upstream-lock.json)。保留上游MIT许可证、归属信息及第三方依赖许可证。卫宁健康Logo、商标及公司模板保留其原有权利归属，代码许可证不构成商标授权。
+上游版本和提交见 [upstream-lock.json](skills/ppt-master-winppt/upstream-lock.json)。保留上游MIT许可证、归属信息及第三方依赖许可证。卫宁健康Logo、商标及公司模板保留其原有权利归属，代码许可证不构成商标授权。
+
+## 2.0.1 名称迁移与兼容性说明
+
+Skill标识、安装目录和仓库名称统一为 `ppt-master-winppt`，模板、Logo和个性化规则保持不变。旧版使用者应在备份自定义配置后替换旧目录，避免新旧两个Skill同时被加载。
+
+豆包工作目前会因本包文件数量超限报 `FILE_COUNT_EXCEEDED`，文件同步不代表应用已加载；此问题尚未修复。Windows实机及真实PowerPoint显示仍未验证。

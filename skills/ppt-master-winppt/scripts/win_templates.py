@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""win-ppt - Local Weining template compatibility commands.
+"""ppt-master-winppt - Local Weining template compatibility commands.
 
 Usage:
     Use project_manager.py list-templates or import-template <project> <name>.

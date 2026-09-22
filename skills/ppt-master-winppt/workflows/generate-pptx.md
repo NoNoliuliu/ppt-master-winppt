@@ -71,7 +71,7 @@ python3 ${SKILL_DIR}/scripts/project_manager.py import-sources <project_path> <s
 
 ### Step 3: Template Candidate Preparation
 
-Apply [win-ppt local template and approval defaults](../references/win-local.md) before the generic candidate defaults below.
+Apply [ppt-master-winppt local template and approval defaults](../references/win-local.md) before the generic candidate defaults below.
 
 Internal preparation for every Default run — no page, question, receipt, selection, or installation; read only the frontmatter an exact root needs for kind and canvas. Quick skips this Step.
 

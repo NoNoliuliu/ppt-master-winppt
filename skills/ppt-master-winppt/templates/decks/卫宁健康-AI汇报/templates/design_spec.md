@@ -203,7 +203,7 @@ page_count: 5
 
 ## X. SVG技术约束
 
-画布保持 `0 0 1280 720`。当前 SVG 编写和导出约束以 win-ppt 的 `references/shared-standards-core.md` 与所选运行流程为准。原版模板规范保留在旧格式模板目录中。
+画布保持 `0 0 1280 720`。当前 SVG 编写和导出约束以 ppt-master-winppt 的 `references/shared-standards-core.md` 与所选运行流程为准。原版模板规范保留在旧格式模板目录中。
 
 ## XI. 占位符规范
 | 占位符       | 描述        |

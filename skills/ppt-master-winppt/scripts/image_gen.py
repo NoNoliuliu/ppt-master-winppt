@@ -24,7 +24,7 @@ Backend selection (`IMAGE_BACKEND` in `.env` or the current process environment)
 Configuration source (process env wins, `.env` is the fallback layer):
   1. Current process environment variables
   2. WIN_PPT_ENV_FILE when explicitly set (no fallback to other files)
-  3. Otherwise the project/repository root .env (legacy win-ppt behavior)
+  3. Otherwise the project/repository root .env (legacy ppt-master-winppt behavior)
 
 Supported keys:
   IMAGE_BACKEND    (required) backend name
