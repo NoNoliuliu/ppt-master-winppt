@@ -82,6 +82,8 @@ Missing source-conversion dependencies may be bypassed only when equivalent comp
 
 ### Windows execution and incomplete-package diagnostics
 
+Before dependency setup, run `"<python.exe>" "<skill-dir>/scripts/check_skill_package.py"` from PowerShell. It is read-only, reports exact missing runtime paths, and exits 2 when the installed Skill is incomplete. Reinstall a complete package before proceeding; `bootstrap_env.py` also checks this structure, but pip cannot repair missing Skill files.
+
 On Windows, use the host's working PowerShell with an absolute Python executable and quoted absolute script/project paths. Do not depend on Bash, `dirname`, `ls`, `python3`, or Unix path conversion. If those commands fail or produce paths such as `c:\c\Users`, stop retrying that command style and resolve the actual Windows paths. Do not change global PATH or execution policy to run this Skill.
 
 For bootstrap diagnostics use `--report "<project-dir>/bootstrap-report.txt"`; it writes UTF-8 directly via Python and returns the same check status. For other tools whose captured output is empty/garbled, use Python `subprocess.run` with argument lists and write the captured bytes to a diagnostic file using explicit decoding/UTF-8 encoding, then inspect both the exit code and file. PowerShell redirection can use UTF-16 depending on version; do not infer command success from an empty console. Keep credentials out of logs.

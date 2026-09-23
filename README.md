@@ -10,7 +10,7 @@
 
 下载本仓库 ZIP 并解压，将 `skills/ppt-master-winppt` 整个文件夹放入所用 AI 工具支持的 Skill 目录，然后重新加载 Skill。也可克隆本仓库；运行时需使用 Skill 所在目录的绝对路径。
 
-运行环境为 Python 3.10+。2.1.0 提供按功能检查和联网安装依赖：在实际运行的虚拟环境中执行 `scripts/bootstrap_env.py`，默认检查 PPT 制作依赖；`--profile preview` 单独检查/安装预览依赖，`--check-only` 只检查，`--report <文件>` 输出 UTF-8 诊断。预览不可用时说明原因并降级为聊天交互，不阻止依赖齐全的基本 PPT 生成。不同功能的额外依赖见其工作流说明。内置 `lib` 是历史 Windows CPython 3.13 依赖，不适用于其他平台或 Python 版本，不能代替全部新版依赖。
+运行环境为 Python 3.10+。安装后先用实际运行的解释器执行 `scripts/check_skill_package.py`；缺文件时按输出路径重新获取完整包，依赖安装不能补齐 Skill 文件。再在实际运行的虚拟环境中执行 `scripts/bootstrap_env.py`，默认检查 PPT 制作依赖；`--profile preview` 单独检查/安装预览依赖，`--check-only` 只检查，`--report <文件>` 输出 UTF-8 诊断。预览不可用时说明原因并降级为聊天交互，不阻止依赖齐全的基本 PPT 生成。不同功能的额外依赖见其工作流说明。内置 `lib` 是历史 Windows CPython 3.13 依赖，不适用于其他平台或 Python 版本，不能代替全部新版依赖。
 
 API 凭据通过进程环境变量提供，或用 `WIN_PPT_ENV_FILE` 指定本地配置文件。不要把实际配置或凭据提交到 GitHub。
 
@@ -64,7 +64,7 @@ API 凭据通过进程环境变量提供，或用 `WIN_PPT_ENV_FILE` 指定本�
 
 ## 验证范围
 
-四套模板20页SVG与旧版渲染逐像素一致；模板导出、项目导入和本地兼容测试通过。Windows实机、真实PowerPoint显示及付费生图/语音API尚未验证；请先在目标环境试运行。以上测试范围不能视为所有上游功能均已实测。
+四套模板20页SVG与旧版渲染逐像素一致；模板导出、项目导入和本地兼容测试通过。另有一次 Windows 实机 8 页月报 PPTX 在真实 PowerPoint 打开并由使用者确认布局、字体和可编辑形状；这不覆盖其他路由、完整预览或付费生图/语音 API。请在目标环境试运行。
 
 ## 来源与许可
 
@@ -74,7 +74,11 @@ API 凭据通过进程环境变量提供，或用 `WIN_PPT_ENV_FILE` 指定本�
 
 Skill标识、安装目录和仓库名称统一为 `ppt-master-winppt`，模板、Logo和个性化规则保持不变。旧版使用者应在备份自定义配置后替换旧目录，避免新旧两个Skill同时被加载。
 
-豆包工作目前会因本包文件数量超限报 `FILE_COUNT_EXCEEDED`，文件同步不代表应用已加载；此问题尚未修复。Windows实机及真实PowerPoint显示仍未验证。
+豆包工作目前会因本包文件数量超限报 `FILE_COUNT_EXCEEDED`，文件同步不代表应用已加载；此问题尚未修复。Windows 实机仅验证过上述 8 页生成结果，不能推及全部功能。
+
+## 2.1.1 更新
+
+安装前后可用 `scripts/check_skill_package.py` 检查必需工作流、schema、scaffold 和入口脚本；缺失时列出具体路径并阻断依赖安装。`templates/examples/structured-spec-lock.md` 提供经过 schema 校验的双页 structured 锁示例，`templates/spec_lock_reference.md` 补充母版、图片登记和绘制前检查点。发布时应在最终分发包解压后运行结构检查，再验证 Skill 加载与当前路由。文件数超限问题本版未处理。
 
 ## 2.1.0 更新
 

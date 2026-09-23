@@ -11,6 +11,8 @@ import json
 import subprocess
 import sys
 
+from check_skill_package import missing_files
+
 CORE = [
     ("PyYAML>=6.0", "yaml"), ("python-pptx>=0.6.21", "pptx"),
     ("lxml", "lxml.etree"), ("Pillow>=9.0.0", "PIL.Image"),
@@ -87,7 +89,15 @@ def component_status(root):
 
 
 def run(args):
-    components = component_status(Path(__file__).resolve().parents[1])
+    skill_root = Path(__file__).resolve().parents[1]
+    missing = missing_files(skill_root)
+    if missing:
+        print('Incomplete Skill package; missing required files:')
+        for relative in missing:
+            print(' ', relative)
+        print('Reinstall a complete package. Pip cannot restore Skill files.')
+        return 2
+    components = component_status(skill_root)
     print('[bootstrap] components:', json.dumps(components))
     if not components['ppt_export'] or not components['quality_checker']:
         print('Incomplete Skill package: restore from the published package; pip cannot install missing Skill scripts.')
