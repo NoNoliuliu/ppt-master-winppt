@@ -43,7 +43,7 @@ Image configuration keeps process environment precedence and the old repository-
 
 ## 5. Managed upgrades
 
-This is a maintained adaptation of `https://github.com/hugohe3/ppt-master`, pinned to upstream v6.6.0 / `a50758ac29ec027e85966db33e2ae80031446756`; local version 2.1.0 is independent. Keep the MIT license, author identity, and attribution checks. Upgrade in an isolated candidate, preserve this contract and all local template assets, validate, then obtain the registry-required publication approval. Use `obsidian-skill-registry` to publish and sync; never update a deployed copy by pulling upstream in place.
+This is a maintained adaptation of `https://github.com/hugohe3/ppt-master`, pinned to upstream v6.7.0 / `b4efe3ddf237a97a42880164759162f8e2412f2f`; local version 2.2.0 is independent. Keep the MIT license, author identity, and attribution checks. Upgrade in an isolated candidate, preserve this contract and all local template assets, validate, then obtain the registry-required publication approval. Use `obsidian-skill-registry` to publish and sync; never update a deployed copy by pulling upstream in place.
 
 ## Environment preflight
 
@@ -93,3 +93,27 @@ Bootstrap reports the presence of the export entry, checker, confirmation UI and
 ### Optional backup compatibility
 
 Native editable PPTX is the basic delivery. An optional SVG/image backup requiring PNG fallback is a separate capability: if raster dependencies fail, disclose the omitted backup and deliver the valid native PPTX. Do not call an SVG-only backup compatible with the recipient's Office version without testing; CairoSVG also requires a working native Cairo runtime, so successful pip installation alone is not proof of raster readiness.
+
+## Cross-platform command rules
+
+These rules apply to every command shown in the imported runtime, which writes examples as `python3 ${SKILL_DIR}/...`.
+
+- Replace `python3` with the absolute interpreter resolved in the environment preflight, on every platform. On Windows never rely on `python3`; it may be the Microsoft Store stub.
+- Quote every expanded path: `"<python>" "<skill-dir>/scripts/<tool>.py" "<project_path>"`. User folders, OneDrive folders and project names often contain spaces; an unquoted path splits into several arguments.
+- On Windows use PowerShell with `&` and absolute paths (see the preflight examples above); do not translate commands to Bash syntax.
+
+## Live preview and confirmation UI troubleshooting
+
+The browser preview (`svg_editor/server.py`), confirmation page (`confirm_ui/server.py`) and spec review page (`spec_review/server.py`) are optional. Their failure never blocks PPT generation or export; fall back to chat confirmation and say so once.
+
+Before first use in a task, run `"<python>" "<skill-dir>/scripts/bootstrap_env.py" --check-only --profile preview` with the resolved interpreter; install with `--profile preview` (without `--check-only`) in the approved venv if it reports Flask missing. Start every server with that same interpreter.
+
+| Symptom | Cause | Action |
+|---|---|---|
+| `No module named 'flask'` / message asking for `--profile preview` | The server was started with an interpreter that lacks Flask (often the system `python3`) | Rerun with the resolved interpreter, or install the preview profile into it |
+| `did not become ready … within 15s` while the log shows the server running | A system or corporate proxy intercepted the loopback health check. This package bypasses proxies for `127.0.0.1` since 2.2.0 | Confirm the installed Skill is ≥ 2.2.0; if it still fails, read `<project>/live_preview/server.log` |
+| `already running … on port N` | A previous preview for this project is still alive | Give the existing URL, or run the same command with `--shutdown` and start again |
+| Address in use / no free port | Another program holds the port range | Pass an explicit free `--port` |
+| Server exits as soon as the command returns, or binding is denied | The AI host's sandbox forbids background processes or listening sockets | Do not retry repeatedly; use chat confirmation and tell the user the host blocked the preview |
+
+Report the actual URL from the launch output or the project's `lock.json`, never an assumed `6060`.

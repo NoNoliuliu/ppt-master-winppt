@@ -3,14 +3,14 @@ name: ppt-master-winppt
 description: >
   【卫宁PPT制作技能】AI驱动的可编辑PPTX生成与美化工作流：将Markdown、Word、PDF、Excel等资料转成
   结构化内容后直接生成可编辑的PowerPoint文件；支持页面视觉重建、可复用的品牌/样式/版式工作区、
-  原生PPTX模板填充，以及对成品PPT的增强优化。基于开源PPT Master v6.6.0本地适配，内置卫宁健康
+  原生PPTX模板填充，以及对成品PPT的增强优化。基于开源PPT Master v6.7.0本地适配，内置卫宁健康
   品牌模板（AI汇报、橘色、深蓝、暖调大地色四套）。适用场景：用户要求制作、生成、美化、重设计PPT，
   填充模板，或为PPT添加旁白/动画、生成自动播放的演示视频。触发词：做PPT、生成PPTX、美化幻灯片、
   ppt-master-winppt。
 metadata:
-  version: "2.1.1"
-  upstream_version: "6.6.0"
-  upstream_commit: "a50758ac29ec027e85966db33e2ae80031446756"
+  version: "2.2.0"
+  upstream_version: "6.7.0"
+  upstream_commit: "b4efe3ddf237a97a42880164759162f8e2412f2f"
   copyright: "Copyright (c) 2025-2026 Hugo He"
   license: "MIT"
   official_repository: "https://github.com/hugohe3/ppt-master"
@@ -150,5 +150,5 @@ ends at export. Step numbers stay as written.
 - This package is a workflow/skill, not a generic application scaffold. Do not create `.worktrees/`, `tests/`, branch workflows, or generic engineering structure by default.
 - Keep required workflow, reference, script, and template documentation inside this Skill directory.
 - Repository-level documents may point into the package; package runtime files must not depend on repository-level instructions.
-- On Windows, if a documented `python3 ...` command is unavailable, rerun the same command with `python`.
+- Run documented `python3 ...` commands with the interpreter resolved in the local environment preflight and quote every path; see [cross-platform command rules](references/win-local.md#cross-platform-command-rules).
 - Sponsor information is optional reference material. Read the matching [`SPONSORS.md`](SPONSORS.md) or [`SPONSORS_CN.md`](SPONSORS_CN.md) only when the user explicitly requests a model, AI image model, API/provider, or hosted-service recommendation. Never surface sponsor or model recommendations proactively during normal generation, troubleshooting, or quality review.

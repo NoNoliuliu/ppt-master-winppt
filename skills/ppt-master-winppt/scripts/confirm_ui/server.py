@@ -47,7 +47,24 @@ import urllib.request
 from pathlib import Path
 from typing import Optional
 
-from flask import Flask, jsonify, request, send_from_directory
+try:
+    from flask import Flask, jsonify, request, send_from_directory
+except ImportError as _exc:  # ppt-master-winppt: actionable message instead of a traceback
+    _bootstrap = Path(__file__).resolve().parents[1] / 'bootstrap_env.py'
+    sys.stderr.write(
+        f"{_exc}\n"
+        f"实时预览/确认页需要 Flask，但当前解释器没有安装：{sys.executable}\n"
+        "请改用环境检查时解析出的那个 Python 运行本命令；或用它安装预览依赖：\n"
+        f'  "<python>" "{_bootstrap}" --profile preview\n'
+        "预览不可用不影响生成和导出 PPT，可改在对话中确认。\n"
+        "Live preview needs Flask, which this interpreter lacks. Use the interpreter from the "
+        "environment preflight, or run bootstrap_env.py --profile preview with it.\n"
+    )
+    raise SystemExit(2)
+
+# ppt-master-winppt: loopback checks must bypass system/corporate proxies; otherwise a
+# proxy that does not exempt 127.0.0.1 makes a healthy server look unreachable.
+_LOCAL_OPENER = urllib.request.build_opener(urllib.request.ProxyHandler({}))
 
 # Local — sys.path injection for sibling module (code-style.md §3)
 _SCRIPTS_DIR = Path(__file__).resolve().parent.parent
@@ -66,6 +83,7 @@ from server_common import (  # noqa: E402
     find_free_port as _find_free_port,
     lock_pid as _lock_pid,
     open_preview_browser,
+    plain_request_log,
     popen_detached as _popen_detached,
     process_alive as _process_alive,
     read_lock as _read_lock,
@@ -896,7 +914,7 @@ def _wait_for_server_ready(
             logger.error('confirm UI exited during startup (code=%s)', returncode)
             return 0
         try:
-            with urllib.request.urlopen(health_url, timeout=1) as resp:
+            with _LOCAL_OPENER.open(health_url, timeout=1) as resp:
                 data = json.load(resp)
                 lock = _read_lock(project_path / LOCK_FILE_NAME)
                 server_pid = _lock_pid(lock)
@@ -2192,7 +2210,7 @@ def _shutdown_existing(lock_file: Path) -> int:
                 headers={'Content-Type': 'application/json'},
                 method='POST',
             )
-            urllib.request.urlopen(req, timeout=3)
+            _LOCAL_OPENER.open(req, timeout=3)
         except OSError:
             pass  # server may already be exiting; fall through to the kill path
     for _ in range(20):  # up to ~2s for the graceful exit to land
@@ -2278,9 +2296,11 @@ def _ai_comparison_items(kind: str) -> list[dict[str, str]]:
             continue
         if not re.fullmatch(r'[A-Za-z0-9_.-]+\.png', filename):
             continue
+        # The manifest names the generated PNG; the committed copy is WebP.
+        item_id = Path(filename).stem
+        filename = f'{item_id}.webp'
         if not (_AI_IMAGE_COMPARISON_DIR / kind / filename).exists():
             continue
-        item_id = Path(filename).stem
         items.append({
             'id': item_id,
             'label': item.get('type') or item_id,
@@ -2450,7 +2470,7 @@ def create_app(
         """Serve rendering images for generated-image strategy candidates."""
         if kind != 'rendering':
             return jsonify({'error': 'invalid comparison kind'}), 404
-        if not re.fullmatch(r'[A-Za-z0-9_.-]+\.png', filename or ''):
+        if not re.fullmatch(r'[A-Za-z0-9_.-]+\.webp', filename or ''):
             return jsonify({'error': 'invalid comparison filename'}), 404
         return send_from_directory(_AI_IMAGE_COMPARISON_DIR / kind, filename)
 
@@ -2807,6 +2827,7 @@ def main(argv: Optional[list[str]] = None) -> int:
         format='[%(asctime)s] [%(levelname)s] confirm_ui: %(message)s',
         datefmt='%H:%M:%S',
     )
+    plain_request_log()
 
     if args.port is not None:
         try:
