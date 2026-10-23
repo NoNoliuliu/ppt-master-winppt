@@ -3,14 +3,14 @@ name: ppt-master-winppt
 description: >
   【卫宁PPT制作技能】AI驱动的可编辑PPTX生成与美化工作流：将Markdown、Word、PDF、Excel等资料转成
   结构化内容后直接生成可编辑的PowerPoint文件；支持页面视觉重建、可复用的品牌/样式/版式工作区、
-  原生PPTX模板填充，以及对成品PPT的增强优化。基于开源PPT Master v6.7.0本地适配，内置卫宁健康
+  原生PPTX模板填充，以及对成品PPT的增强优化。基于开源PPT Master v6.7.3本地适配，内置卫宁健康
   品牌模板（AI汇报、橘色、深蓝、暖调大地色四套）。适用场景：用户要求制作、生成、美化、重设计PPT，
   填充模板，或为PPT添加旁白/动画、生成自动播放的演示视频。触发词：做PPT、生成PPTX、美化幻灯片、
   ppt-master-winppt。
 metadata:
-  version: "2.2.0"
-  upstream_version: "6.7.0"
-  upstream_commit: "b4efe3ddf237a97a42880164759162f8e2412f2f"
+  version: "2.3.1"
+  upstream_version: "6.7.3"
+  upstream_commit: "622bf0148bca4f697b0184322c7e2aa2a04520a2"
   copyright: "Copyright (c) 2025-2026 Hugo He"
   license: "MIT"
   official_repository: "https://github.com/hugohe3/ppt-master"
@@ -39,7 +39,8 @@ use CWD, or assume a repo checkout. If unavailable, ask; never search or guess.
    [local environment preflight](references/win-local.md#environment-preflight).
    Any non-zero result
    stops the Skill immediately; do not inspect, repair, or bypass the integrity
-   gate.
+   gate. On Windows, a `python3` that never starts (the WindowsApps stub exits
+   9009 with no output) is not a guard result: rerun with `python` first.
 2.1. Run `"<python>" "${SKILL_DIR}/scripts/check_skill_package.py"` with the
    resolved Python 3.10+ interpreter. A non-zero result means the installed
    package is incomplete; stop and reinstall the complete package before
@@ -133,7 +134,7 @@ ends at export. Step numbers stay as written.
 ## Global Communication Rules
 
 - Match the user's language and source language unless the user explicitly overrides it.
-- Localize user-facing option labels and explanations. Keep exact enum IDs or field names when needed for precision.
+- Localize user-facing option labels and explanations. Render each fixed message template (role-switch banner, completion report) in the user's chat language when it differs from the template's. Keep exact enum IDs or field names when needed for precision.
 - Keep `design_spec.md` section headings and field names in the template's original English; content values may use the user's language.
 - Before switching roles, read the corresponding role reference and output:
 

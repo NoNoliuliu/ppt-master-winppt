@@ -43,7 +43,7 @@ Image configuration keeps process environment precedence and the old repository-
 
 ## 5. Managed upgrades
 
-This is a maintained adaptation of `https://github.com/hugohe3/ppt-master`, pinned to upstream v6.7.0 / `b4efe3ddf237a97a42880164759162f8e2412f2f`; local version 2.2.0 is independent. Keep the MIT license, author identity, and attribution checks. Upgrade in an isolated candidate, preserve this contract and all local template assets, validate, then obtain the registry-required publication approval. Use `obsidian-skill-registry` to publish and sync; never update a deployed copy by pulling upstream in place.
+This is a maintained adaptation of `https://github.com/hugohe3/ppt-master`, pinned to upstream v6.7.3 / `622bf0148bca4f697b0184322c7e2aa2a04520a2`; local version 2.3.1 is independent. Keep the MIT license, author identity, and attribution checks. Upgrade in an isolated candidate, preserve this contract and all local template assets, validate, then obtain the registry-required publication approval. Use `obsidian-skill-registry` to publish and sync; never update a deployed copy by pulling upstream in place.
 
 ## Environment preflight
 
