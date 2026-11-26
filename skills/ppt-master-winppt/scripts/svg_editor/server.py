@@ -113,6 +113,7 @@ from annotations import (  # noqa: E402
     strip_unused_temp_ids,
 )
 from embed_icons import (  # noqa: E402
+    collect_svg_ids,
     parse_use_element,
     resolve_icon_path,
     extract_paths_from_icon,
@@ -205,6 +206,7 @@ def _inline_icons(
     if not matches:
         return content, warnings
     new_content = content
+    used_ids = collect_svg_ids(content)
     for match in reversed(matches):
         use_str = match.group(0)
         icon_name: str = ''
@@ -221,6 +223,8 @@ def _inline_icons(
                 color,
                 target_dir=target_dir,
             )
+            if elements:
+                replacement = generate_icon_group(attrs, elements, style, base_size, used_ids=used_ids)
         except Exception as exc:
             warnings.append({'icon': icon_name, 'reason': f'{type(exc).__name__}: {exc}'})
             logger.warning('icon inline failed: name=%r reason=%s', icon_name, exc)
@@ -228,11 +232,8 @@ def _inline_icons(
         if not elements:
             warnings.append({'icon': icon_name, 'reason': 'no renderable paths in icon'})
             continue
-        replacement = generate_icon_group(attrs, elements, style, base_size)
-        id_match = re.search(r'\bid="([^"]+)"', use_str)
-        if id_match:
+        if attrs.get('id'):
             preview_attrs = [
-                f'id="{_xml_attr(id_match.group(1))}"',
                 f'data-icon="{_xml_attr(icon_name)}"',
             ]
             for key in ('x', 'y', 'width', 'height'):
@@ -1330,6 +1331,9 @@ def _shutdown_existing(project_path: Path) -> int:
         logger.info('live preview already stopped; cleared stale lock')
         return 0
 
+    if not _verify_running_server(project_path, port, pid):
+        return 1
+
     if port:
         try:
             req = urllib.request.Request(
@@ -1356,6 +1360,37 @@ def _shutdown_existing(project_path: Path) -> int:
     return 0
 
 
+def _require_server_identity(project_path: Path, port: int, pid: int) -> None:
+    """Require the live endpoint to agree with the project and lock pid."""
+    _validate_port(port)
+    with _LOCAL_OPENER.open(_server_url(port, '/api/health'), timeout=1) as response:
+        data = json.load(response)
+        if (
+            response.status != 200
+            or not isinstance(data, dict)
+            or data.get('service') != 'live_preview'
+            or data.get('project') != str(project_path)
+            or data.get('pid') != pid
+            or pid <= 0
+        ):
+            raise ValueError('health response does not match the project, service, or lock pid')
+
+
+def _verify_running_server(project_path: Path, port: int, pid: int) -> bool:
+    """Refuse reuse or shutdown when ownership cannot be established."""
+    try:
+        _require_server_identity(project_path, port, pid)
+    except (OSError, ValueError) as exc:
+        logger.error(
+            'cannot verify live preview ownership for %s: %s. No service was reused or stopped; '
+            'check this project\'s live_preview/lock.json (or legacy .live_preview.lock), '
+            'remove it only after confirming it is stale or copied, then retry',
+            project_path, exc,
+        )
+        return False
+    return True
+
+
 def _wait_for_ready(
     port: int,
     proc: subprocess.Popen,
@@ -1376,21 +1411,12 @@ def _wait_for_ready(
             logger.error('live preview exited during startup (code=%s)', proc.returncode)
             return 0
         try:
-            with _LOCAL_OPENER.open(health_url, timeout=1) as response:
-                data = json.load(response)
-                lock = _read_lock(_lock_file(project_path))
-                server_pid = _lock_pid(lock)
-                if (
-                    response.status == 200
-                    and isinstance(data, dict)
-                    and data.get('service') == 'live_preview'
-                    and data.get('project') == str(project_path)
-                    and lock is not None
-                    and lock.get('port') == port
-                    and data.get('pid') == server_pid
-                ):
-                    return server_pid
-                last_error = 'health response belongs to another service or project'
+            lock = _read_lock(_lock_file(project_path))
+            server_pid = _lock_pid(lock)
+            _require_server_identity(project_path, port, server_pid)
+            if lock is not None and lock.get('port') == port:
+                return server_pid
+            last_error = 'health response belongs to another service or project'
         except (urllib.error.URLError, TimeoutError, OSError, ValueError) as exc:
             last_error = str(exc)
         time.sleep(0.25)
@@ -1410,6 +1436,7 @@ def _open_browser(url: str) -> bool:
 def _reuse_running_server(
     existing: dict,
     *,
+    project_path: Path,
     open_browser: bool,
     requested_port: Optional[int] = None,
 ) -> int:
@@ -1424,12 +1451,7 @@ def _reuse_running_server(
         port = int(existing.get('port', 0) or 0)
     except (TypeError, ValueError):
         port = 0
-    if not port:
-        logger.error(
-            'live preview is already running for this project (pid=%s) but its '
-            'lock records no usable port; run --shutdown, then start again',
-            pid,
-        )
+    if not _verify_running_server(project_path, port, _lock_pid(existing)):
         return 1
     if requested_port is not None and port != requested_port:
         logger.error(
@@ -1532,6 +1554,7 @@ def main(argv: Optional[list[str]] = None) -> int:
     if legacy_existing:
         return _reuse_running_server(
             legacy_existing,
+            project_path=project_path,
             open_browser=not args.no_browser,
             requested_port=args.port,
         )
@@ -1544,6 +1567,7 @@ def main(argv: Optional[list[str]] = None) -> int:
         if existing and _process_alive(_lock_pid(existing)):
             return _reuse_running_server(
                 existing,
+                project_path=project_path,
                 open_browser=not args.no_browser,
                 requested_port=args.port,
             )
@@ -1622,6 +1646,7 @@ def main(argv: Optional[list[str]] = None) -> int:
     if existing:
         return _reuse_running_server(
             existing,
+            project_path=project_path,
             open_browser=not args.no_browser,
             requested_port=args.port,
         )

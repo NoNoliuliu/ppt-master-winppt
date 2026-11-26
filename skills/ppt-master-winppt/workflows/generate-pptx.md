@@ -75,7 +75,7 @@ Apply [ppt-master-winppt local template and approval defaults](../references/win
 
 Internal preparation for every Default run — no page, question, receipt, selection, or installation; read only the frontmatter an exact root needs for kind and canvas. Quick skips this Step.
 
-Candidates follow [`routing.md`](./routing.md) §7: registered roots from the four indexes plus every exact root supplied for this run. Raw PPTX is source material, not a candidate — raw PPTX plus new content is [`edit-native-pptx`](./edit-native-pptx.md), and a reusable workspace comes from [`create-template`](./create-template.md).
+Candidates follow [`routing.md`](./routing.md) §7: indexed roots plus every exact root supplied for this run. Raw PPTX is source material, not a candidate — raw PPTX plus new content is [`edit-native-pptx`](./edit-native-pptx.md), and a reusable workspace comes from [`create-template`](./create-template.md).
 
 Resolve the surface under [`confirm-surface.md`](../references/confirm-surface.md).
 

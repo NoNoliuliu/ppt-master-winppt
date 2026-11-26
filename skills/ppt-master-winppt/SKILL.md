@@ -3,14 +3,14 @@ name: ppt-master-winppt
 description: >
   【卫宁PPT制作技能】AI驱动的可编辑PPTX生成与美化工作流：将Markdown、Word、PDF、Excel等资料转成
   结构化内容后直接生成可编辑的PowerPoint文件；支持页面视觉重建、可复用的品牌/样式/版式工作区、
-  原生PPTX模板填充，以及对成品PPT的增强优化。基于开源PPT Master v6.7.3本地适配，内置卫宁健康
+  原生PPTX模板填充，以及对成品PPT的增强优化。基于开源PPT Master v6.10.0本地适配，内置卫宁健康
   品牌模板（AI汇报、橘色、深蓝、暖调大地色四套）。适用场景：用户要求制作、生成、美化、重设计PPT，
   填充模板，或为PPT添加旁白/动画、生成自动播放的演示视频。触发词：做PPT、生成PPTX、美化幻灯片、
   ppt-master-winppt。
 metadata:
-  version: "2.3.1"
-  upstream_version: "6.7.3"
-  upstream_commit: "622bf0148bca4f697b0184322c7e2aa2a04520a2"
+  version: "2.4.0"
+  upstream_version: "6.10.0"
+  upstream_commit: "d8f704bc8c1552d53a8769b55d1eecd22c782042"
   copyright: "Copyright (c) 2025-2026 Hugo He"
   license: "MIT"
   official_repository: "https://github.com/hugohe3/ppt-master"
@@ -55,7 +55,7 @@ use CWD, or assume a repo checkout. If unavailable, ask; never search or guess.
 
 | Selected route / profile | Runtime authority |
 |---|---|
-| Generate PPTX — Image to PPTX | [`workflows/profiles/image-to-pptx.md`](workflows/profiles/image-to-pptx.md); Codex-supported, always Quick |
+| Generate PPTX — Image to PPTX | [`workflows/profiles/image-to-pptx.md`](workflows/profiles/image-to-pptx.md); vision host, always Quick |
 | Generate PPTX — Beautify | [`workflows/profiles/beautify-pptx.md`](workflows/profiles/beautify-pptx.md); explicit Quick intent selects Quick, otherwise Default |
 | Generate PPTX — ordinary Default | [`workflows/generate-pptx.md`](workflows/generate-pptx.md) |
 | Generate PPTX — ordinary explicit Quick | [`workflows/profiles/quick-generate.md`](workflows/profiles/quick-generate.md) |
